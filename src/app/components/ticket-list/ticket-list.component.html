@@ -1,0 +1,83 @@
+<div class="container-fluid bg-dark">
+
+    <div class="row">
+        <div class="col-12 text-end mp-2">
+            <button class="btn btn-sm btn-primary" (click)="isGride=!isGride">{{isGride? ' Table':'Gride'}}</button>
+            <button class="btn btn-sm btn-primary mx-2" (click)="onToggle()">{{isAll? 'Show Todays':'Show All'}}</button>
+
+        </div>
+    </div>
+    <hr>
+    @if (!isGride) {
+        <div class="row">
+            <div class="col-12">
+
+                <table class="table table-bordered bg-dark">
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>Ticket Date</th>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Adults</th>
+                            <th>childrens</th>
+                            <th>Final Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (ticket of tickets.data; track ticket) {
+                        <tr>
+                            <th>1</th>
+                            <!-- <th>{{ticket.ticketDate | date:'dd-mm-yyyy'}}</th> -->
+                            <th>{{ticket.ticketDate}}</th>
+
+                            <th>{{ticket.customerName}}</th>
+                            <th>{{ticket.mobileNo}}</th>
+                            <th>{{ticket.adultCount}}</th>
+                            <th>{{ticket.childCount}}</th>
+                            <th>{{ticket.finalAmount}}</th>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    }
+
+    @if (isGride) {
+        <div class="row">
+            @for (ticket of tickets.data; track ticket) {
+            <div class="col-3 col-md-3 col-lg-3 pb-1">
+                <div class="cart">
+                    <h1 class="cart_title">
+                        {{ticket.customerName}} <small>( {{ticket.mobileNo}} )</small>
+                    </h1>
+
+                    <h3 class="cart_price">
+                        <span><i class="fa fa-inr"></i> {{ticket.finalAmount}} <sup><i class="fa fa-inr"></i>
+                                {{ticket.totalAmount}}</sup></span>
+                    </h3>
+                    <p>{{ticket.ticketDate}}</p>
+                    <div class="productColorsWrapper">
+                        <label for="blue" data-color="blue" class="productColorLable">
+                            <i class="fa fa-male"></i>
+                            <span>{{ticket.childCount}}</span>
+                        </label>
+                        <label for="purple" data-color="purple" class="productColorLable" id="">
+                            <i class="fa fa-user"></i>
+                            <span>{{ticket.adultCount}}</span>
+                        </label>
+                    </div>
+                    <a  type="button" (click)="DeleteTicketByTicketId(ticket.ticketId)" class="addToCartBtn">
+                        <i class="fa fa-times-circle-o px-2"></i> Cancel
+                    </a>
+                </div>
+            </div>
+            }
+
+        </div>
+    }
+
+</div>
