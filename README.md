@@ -1,4 +1,5 @@
 # TicketBooking
+![image](https://github.com/mohamed857/ticket-booking/assets/66689511/29a32cb5-d258-4031-b9d6-01170f539431)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
 
